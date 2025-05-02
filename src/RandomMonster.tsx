@@ -72,12 +72,16 @@ function RandomMonster() {
         </thead>
         <tbody>
           <tr>
-            <td>{monster.name}</td>
+            <td>
+              <span style={{ color: '#4ea1ff', fontWeight: 'bold', textShadow: '0 1px 4px #000, 0 0 2px #4ea1ff' }}>{monster.name}</span>
+            </td>
             <td>{monster.attributes.type}</td>
             <td>
-              Catch: {monster.attributes.traits.canCatch ? "Yes" : "No"},
-              Evolve: {monster.attributes.traits.canEvolve ? "Yes" : "No"},
-              Boss: {monster.attributes.traits.isBoss ? "Yes" : "No"}
+              <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
+                <li>Catch: {monster.attributes.traits.canCatch ? <span style={{color: 'limegreen'}}>✔️</span> : <span style={{color: 'red'}}>❌</span>}</li>
+                <li>Evolve: {monster.attributes.traits.canEvolve ? <span style={{color: 'limegreen'}}>✔️</span> : <span style={{color: 'red'}}>❌</span>}</li>
+                <li>Boss: {monster.attributes.traits.isBoss ? <span style={{color: 'limegreen'}}>✔️</span> : <span style={{color: 'red'}}>❌</span>}</li>
+              </ul>
             </td>
             <td>{monster.attributes.hp}</td>
           </tr>
