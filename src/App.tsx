@@ -1,8 +1,8 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./index.css";
 import axios from "axios";
 
-const api_url = "https://3gcxrtjq-3006.usw3.devtunnels.ms/";
+const api_url = "https://3gcxrtjq-3006.usw3.devtunnels.ms";
 
 export interface Monster {
   id: number;
@@ -27,15 +27,11 @@ function App() {
     {} as Monster
   );
 
-
-  const fetchData = async () => {
-    try {
-      const response = await axios.get(api_url + 'monsters');
-      setMonsters(response.data);
-    } catch (error) {
-      console.error("Error fetching data:", error);
-    }
-  };
+  useEffect(() => {
+       axios.get(api_url + '/monsters')
+       .then((res) => setMonsters(res.data))
+       .catch((err) => console.log(err));
+    }, []);
 
   const handleMonsterClick = (monster: Monster) => {
     setSelectedMonster(monster);
@@ -45,10 +41,6 @@ function App() {
   const handleModalClose = () => {
     setModalOpen(false);
     setSelectedMonster({} as Monster);
-  };
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSelectedMonster({ ...selectedMonster, [e.target.name]: e.target.value });
   };
 
   const handleSave = async () => {
@@ -67,8 +59,6 @@ function App() {
   return (
     <>
       <div>
-        <button onClick={fetchData}>Fetch Data</button>
-        {monsters && <pre>{JSON.stringify(monsters, null, 2)}</pre>}
         <table>
           <thead>
             <tr>
