@@ -27,3 +27,14 @@ th, td {
   background: #222;
   color: #fff;
 }
+
+table button {
+  color: #4ea1ff;
+  font-weight: bold;
+  text-shadow: 0 1px 4px #000, 0 0 2px #4ea1ff;
+  transition: color 0.2s;
+}
+table button:hover {
+  color: #fff;
+  background: #4ea1ff22;
+}
